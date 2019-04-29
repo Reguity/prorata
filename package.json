@@ -1,0 +1,19 @@
+{
+  "name": "prorata",
+  "version": "1.0.0",
+  "description": "Calculate distributions of shares",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reguity/prorata.git"
+  },
+  "author": "Reguity Group AB",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Reguity/prorata/issues"
+  },
+  "homepage": "https://github.com/Reguity/prorata#readme"
+}
