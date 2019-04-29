@@ -2,11 +2,7 @@ module.exports = ({ seats, votes, startDivisorFn, divisorFn }) => {
   let byParty = Object.entries(votes)
     .reduce((ack, [ party, numVotes ]) => ({
       ...ack,
-      [party]: {
-        seats: 0,
-        votes: numVotes,
-        divisor: startDivisorFn(numVotes)
-      }
+      [party]: { seats: 0, votes: numVotes, divisor: startDivisorFn(numVotes) }
     }), {});
   while (seats > 0) {
     let party = Object.entries(byParty).reduce((a, [ k, v ]) => a.divisor > v.divisor ? a : v, { divisor: 0 });
