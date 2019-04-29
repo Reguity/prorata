@@ -12,8 +12,8 @@ let r = prorata({
     L:  342661,
     MP: 271498
   },
-  startDivisorFn: (numVotes) => numVotes / 1.2,
-  divisorFn: (numVotes, seats) => numVotes / (1.4 * seats + 1)
+  startDivisorFn: (votes) => votes / 1.2,
+  divisorFn: (votes, seats) => votes / (1.4 * seats + 1)
 });
 
 console.warn(r);

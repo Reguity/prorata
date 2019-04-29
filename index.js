@@ -1,18 +1,18 @@
 module.exports = ({ seats, votes, startDivisorFn, divisorFn }) => {
-  let byShareowner = Object.entries(votes)
-    .reduce((ack, [ shareowner, numVotes ]) => ({
+  let byParty = Object.entries(votes)
+    .reduce((ack, [ party, numVotes ]) => ({
       ...ack,
-      [shareowner]: {
+      [party]: {
         seats: 0,
         votes: numVotes,
         divisor: startDivisorFn(numVotes)
       }
     }), {});
   while (seats > 0) {
-    let shareowner = Object.entries(byShareowner).reduce((a, [ k, v ]) => a.divisor > v.divisor ? a : v, { divisor: 0 });
-    shareowner.seats++;
-    shareowner.divisor = divisorFn(shareowner.votes, shareowner.seats);
+    let party = Object.entries(byParty).reduce((a, [ k, v ]) => a.divisor > v.divisor ? a : v, { divisor: 0 });
+    party.seats++;
+    party.divisor = divisorFn(party.votes, party.seats);
     seats--;
   }
-  return Object.entries(byShareowner).reduce((a, [k, v]) => ({ ...a, [k]: v.seats }), {});
+  return Object.entries(byParty).reduce((a, [k, v]) => ({ ...a, [k]: v.seats }), {});
 };
