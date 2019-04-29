@@ -23,7 +23,7 @@ let allocation = prorata({
    MP: 271498
  },
  /* Custom divisor callbacks. We use a Modified Sainte-Laguë method ("Jämkade uddatalsmetoden") */
- startDiviserFn: (votes) => votes / 1.2,
+ startDivisorFn: (votes) => votes / 1.2,
  divisorFn: (votes, seats) => votes / (2 * seats + 1)
 });
 /* => {
