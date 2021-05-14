@@ -2,16 +2,17 @@ module.exports = ({ seats, votes, startDivisorFn, divisorFn }) => {
   let seatsLeft = seats;
   const numParties = Object.keys(votes).length;
   const totalNumVotes = Object.values(votes).reduce((ack, v) => ack + v, 0);
+  const autoThreshold = 2 * numParties;
   let byParty = Object.entries(votes)
     .reduce((ack, [ party, numVotes ]) => {
-      const allocatedSeats = Math.floor(seats * numVotes / totalNumVotes);
+      const allocatedSeats = Math.max(0, Math.floor(seats * numVotes / totalNumVotes) - autoThreshold);
       seatsLeft -= allocatedSeats;
       return {
         ...ack,
         [party]: {
           seats: allocatedSeats,
           votes: numVotes,
-          divisor: allocatedSeats === 1 ? startDivisorFn(numVotes) : divisorFn(numVotes, allocatedSeats)
+          divisor: allocatedSeats === 0 ? startDivisorFn(numVotes) : divisorFn(numVotes, allocatedSeats)
         }
       }
     }, {});
