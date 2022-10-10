@@ -5,7 +5,7 @@ module.exports = ({ seats, votes, startDivisorFn, divisorFn }) => {
   const autoThreshold = 2 * numParties;
   let byParty = Object.entries(votes)
     .reduce((ack, [ party, numVotes ]) => {
-      const allocatedSeats = Math.max(0, Math.floor(seats * numVotes / totalNumVotes) - autoThreshold);
+      const allocatedSeats = Math.max(0, Math.floor(seats * numVotes / totalNumVotes) - autoThreshold) || 0;
       seatsLeft -= allocatedSeats;
       return {
         ...ack,
